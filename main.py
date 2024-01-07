@@ -19,7 +19,7 @@ training_dataset = torchvision.datasets.ImageFolder(TRAINING_DATA_DIR, transform
 training_loader = dl.DataLoader(training_dataset, shuffle=True, num_workers=0, batch_size=200, pin_memory=True)
 
 testing_dataset = torchvision.datasets.ImageFolder(TESTING_DATA_DIR, transform=preprocess)
-testing_loader = dl.DataLoader(testing_dataset, shuffle=True, num_workers=0, batch_size=200, pin_memory=True)
+testing_loader = dl.DataLoader(testing_dataset, shuffle=True, num_workers=0, batch_size=1, pin_memory=True)
 
 device_type = "cuda" if torch.cuda.is_available else "cpu"
 device = torch.device(device_type)
@@ -36,7 +36,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 cycle_error = list[float]()
 test_accuracy = list[float]()
 
-num_epochs = 3
+num_epochs = 20
 
 torch.manual_seed(0)
 
