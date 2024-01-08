@@ -37,7 +37,7 @@ def main():
     cycle_error = list[float]()
     test_accuracy = list[float]()
 
-    num_epochs = 20
+    num_epochs = 50
 
     torch.manual_seed(0)
 
