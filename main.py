@@ -12,9 +12,9 @@ TESTING_DATA_DIR = './dataset/preprocessed/testing'
 runtime_preprocess = transforms.Compose([
     transforms.ToImage(),
     transforms.ToDtype(torch.float32, scale=True),
+    transforms.Grayscale(3),
     transforms.RandomRotation(1),
     transforms.RandomHorizontalFlip(.35),
-    transforms.RandomGrayscale(.35),
 ])
 
 def main():
