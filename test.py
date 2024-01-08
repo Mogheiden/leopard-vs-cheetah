@@ -1,6 +1,6 @@
 import torch
 import torch.utils.data.dataloader as dl
-import torchvision.transforms as transforms
+import torchvision.transforms.v2 as transforms
 import torchvision
 
 TESTING_DATA_DIR = './dataset/testing'
@@ -8,8 +8,11 @@ TESTING_DATA_DIR = './dataset/testing'
 model = torch.jit.load('./model.pt')
 preprocess = transforms.Compose([
     transforms.Resize([256, 256]),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    transforms.ToImage(),
+    transforms.ToDtype(torch.float32, scale=True),
+    transforms.Grayscale(3),
+    transforms.RandomRotation(1),
+    transforms.RandomHorizontalFlip(.35),
 ])
 
 testing_dataset = torchvision.datasets.ImageFolder(TESTING_DATA_DIR, transform=preprocess)
